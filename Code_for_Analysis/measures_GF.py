@@ -15,21 +15,21 @@ G = GraphFrame(nodes, edges)
 print "In-Degree"
 G.inDegrees.sort('inDegree', ascending=False).show()
 
-# print "Out-Degree"
-# G.outDegrees.sort('outDegree', ascending=False).show()
+print "Out-Degree"
+G.outDegrees.sort('outDegree', ascending=False).show()
 
-# print "Vertex Degree"
-# G.degrees.sort('degree', ascending=False).show()
+print "Vertex Degree"
+G.degrees.sort('degree', ascending=False).show()
 
-# print "Triangle Count"
-# Results=G.triangeCount()
-# Results.select("id", "count").show()
+print "Triangle Count"
+Results=G.triangleCount()
+Results.select("id", "count").show()
 
-# print "Label Propagation"
-# G.labelPropagation(maxIter=10).show()
+print "Label Propagation"
+G.labelPropagation(maxIter=10).show()
 
-# print "PageRank"
-# G.pageRank(resetProbability=0.15, tol=0.01).vertices.sort('pagerank', ascending=False).show()
+print "PageRank"
+G.pageRank(resetProbability=0.15, tol=0.01).vertices.sort('pagerank', ascending=False).show()
 
 
 print "ALL DONE"

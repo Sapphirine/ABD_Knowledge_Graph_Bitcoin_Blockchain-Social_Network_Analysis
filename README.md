@@ -1,4 +1,4 @@
-# Advanced Big Data: Data Aquisition for Building Knowledge - Blockchain Graph for Bitcoin Transaction
+# Advanced Big Data: Data Aquisition for Building Knowledge Graphs - From Blockchain to Social Network Analysis
 Data Acquisition for Building Knowledge Graph: Blockchain 
 
 ## 1.	Overview:

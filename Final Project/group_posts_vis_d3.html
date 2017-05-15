@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<script type="text/javascript" src = "http://d3js.org/d3.v3.js"> </script>
+
+
+<style>
+	.link
+		{
+			fill: none;
+			stroke: #666;
+			stroke-width: 1.5px;
+		}
+	.node circle
+		{
+			fill: steelblue;
+			stroke: #fff;
+			stroke-width: 1.5px;
+		}
+	.node text
+		{
+			pointer-events: none;
+			font: 10px sans-serif;
+		}
+</style>
+
+
+
+<body>
+
+<script>
+
+	var n_deg = prompt("Degree Value");
+
+	var width=1600, height = 800
+
+	var svg = d3.select("body").append("svg").attr("width",width).attr("height",height);
+
+	var force = d3.layout.force().gravity(0.1).distance(50).charge(-50).size([width, height]);
+
+	d3.json ("group_posts.json", function(json) {
+	
+	force.nodes(json.nodes).links(json.edges).start();
+
+	
+	var link = svg.selectAll(".link").data(json.edges).enter().append("svg:link").attr("class", "link");
+	
+	var node = svg.selectAll(".node").data(json.nodes).enter().append("g").filter(function(d){return d.weight>n_deg;}).attr("class", "node").call(force.drag);
+
+	node.append("circle").attr("r", function(d){return d.weight*2;});
+	node.append("text").attr("dx", 12).attr("dy", ".55em").text(function(d){return ;});
+	node.on("mouseover", function(d){
+		d3.select(this).select('text').text(function(d){return d.label;})
+	}).on("mouseout", function(d) {d3.select(this).select('text').text(function(d){return ;})});
+
+	
+	force.on("tick", function() {
+		link.attr("x1", function(d) {return d.source.x;}).attr("y1", function(d) {return d.source.y;}).attr("x2", function(d) {return d.target.x;}).attr("y2", function(d) {return d.source.y;});
+		node.attr("transform", function(d) {return "translate(" + d.x + "," + d.y + ")";});	
+	});
+
+	});
+
+	
+</script>
+
+
+</body>
+</html>
